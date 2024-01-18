@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Blog </title>
+    <title>Cute Blog</title>
     <style>
-        /* Styles for the main blog page */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #fef4f7;
             color: #333;
         }
 
         header {
-            background-color: #007BFF;
+            background-color: #ff6f9f;
             color: #fff;
             text-align: center;
-            padding: 15px;
-            font-size: 24px;
+            padding: 20px;
+            font-size: 28px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
 
         main {
@@ -27,42 +28,133 @@
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
         h2 {
-            color: #007BFF;
+            color: #ff6f9f;
         }
 
-        p {
-            line-height: 1.6;
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #007BFF;
+        button {
+            background-color: #ff6f9f;
             color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #ff4d80;
+        }
+
+        #createBlogForm {
+            display: none;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #ff6f9f;
+            font-size: 18px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ff6f9f;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Blog </h1>
+        <h1>Cute Blog</h1>
     </header>
 
     <main>
-        <h2>Welcome to the Blog Page!</h2>
-        <p>This is where the main blog content will be displayed.</p>
-        <!-- Add your main blog content here -->
+
+        
+
+        <h2>Latest Vlogs</h2>
+
+        <!-- Display Vlog Entries (Replace with dynamic content from server) -->
+        <div id="vlogEntries">
+            <!-- Display vlog entries dynamically here -->
+        </div>
+
+        <button id="createBlogBtn">📝 Create Blog</button>
+
+        <!-- Create Blog Form -->
+        <div id="createBlogForm">
+            <h2>✏️ Create Your Cute Blog</h2>
+
+            <form id="blogEntryForm">
+                <label for="blogTitle">📚 Blog Title:</label>
+                <input type="text" id="blogTitle" name="blogTitle" placeholder="Enter a cute title" required>
+
+                <label for="blogContent">✏️ Blog Content:</label>
+                <textarea id="blogContent" name="blogContent" rows="8" placeholder="Share your adorable blog story" required></textarea>
+
+                <button type="submit">🌈 Post Blog</button>
+            </form>
+        </div>
+
     </main>
 
     <footer>
-        <p>&copy; 2024 Main Blog Page</p>
+        <p>&copy; 2024 Cute Blog</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const vlogEntriesContainer = document.getElementById('vlogEntries');
+            const createBlogBtn = document.getElementById('createBlogBtn');
+            const createBlogForm = document.getElementById('createBlogForm');
+            const blogEntryForm = document.getElementById('blogEntryForm');
+
+            createBlogBtn.addEventListener('click', function () {
+                // Toggle display of the create blog form
+                createBlogForm.style.display = createBlogForm.style.display === 'none' ? 'block' : 'none';
+            });
+
+            blogEntryForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const blogTitle = document.getElementById('blogTitle').value;
+                const blogContent = document.getElementById('blogContent').value;
+
+                // For simplicity, log blog details to the console (replace with server logic)
+                console.log('Blog Title:', blogTitle);
+                console.log('Blog Content:', blogContent);
+
+                // Display blog entry (replace with dynamic content from server)
+                const blogEntry = document.createElement('div');
+                blogEntry.innerHTML = `
+                    <h3>${blogTitle}</h3>
+                    <p>${blogContent}</p>
+                    <hr>
+                `;
+                vlogEntriesContainer.prepend(blogEntry);
+
+                // Clear form fields
+                document.getElementById('blogTitle').value = '';
+                document.getElementById('blogContent').value = '';
+
+                // Hide the create blog form after posting
+                createBlogForm.style.display = 'none';
+            });
+        });
+    </script>
 
 </body>
 </html>
